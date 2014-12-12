@@ -7,19 +7,18 @@ before do
     headers['Access-Control-Allow-Headers'] = 'accept, authorization, origin'
 end
 
-# whitelist should be a space separated list of URLs
-whitelist = ENV['whitelist'].split
+whitelist = ENV['WHITELIST'].split
 
 set :protection, :origin_whitelist => whitelist
 
 Pony.options = {
   :via => :smtp,
   :via_options => {
-    :address => 'smtp.sendgrid.net',
-    :port => '587',
-    :domain => 'heroku.com',
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
+    :address => ENV['HOST'],
+    :port => ENV['PORT'],
+    :domain => ENV['DOMAIN'],
+    :user_name => ENV['USERNAME'],
+    :password => ENV['PASSWORD'],
     :authentication => :plain,
     :enable_starttls_auto => true
   }
@@ -36,9 +35,9 @@ post '/' do
   end
   puts email
   Pony.mail(
-    :to => ENV['email_recipients'],
-    :from => 'noreply@example.com',
-    :subject => 'New Contact Form',
+    :to => ENV['RECIPIENTS'],
+    :from => ENV['FROM'],
+    :subject => ENV['SUBJECT'],
     :body => email
   )
 end

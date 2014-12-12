@@ -1,38 +1,36 @@
 middleman-contact-form
 ======================
 
-Simple sinatra application, intended for heroku to send emails from contact
+Simple sinatra application to send emails from contact
 requests from a static middleman app deployed on s3.
 
-You are going to want to create a heroku application for this.
+Modified so I don't have to run on heroku. Original README
 
-`heroku create website-contact`
+https://github.com/evantravers/middleman-contact-form
 
-Then, you should go ahead and get sendgrid starter established. This will go
-ahead and add your sendgrid username and password. Huzzah automation.
+Configuration options in .env
 
-`heroku addons:add sendgrid:starter`
-
-While you have heroku open, go ahead and set up the following:
-
-```
-heroku config:set email_recipients="demo@password.com"
-heroku config:set whitelist="http://www.yourstaticsite.com/"
-```
-
-If you want to send from multiple sites, or you have multiple domains, set the
-whitelist string to be a comma separated list of URLs.
-
-On your static site, build a form where the action is the url of your newly
-created heroku application:
-
-`<form action="https://website-contact.herokuapp.com/" "method="post">`
-
-You should be able to use as many fields as you want, the notifier by default
-simply sends you a field per line.
+* WHITELIST - a space separated list of URLs
+* HOST - Sendgrid or Mandrill server
+* PORT - port to connect to, default to 587
+* DOMAIN - the HELO domain provided by the mail client to the recipient's host
+* USERNAME - username to connect to HOST as
+* PASSWORD - password to authenticate USERNAME to HOST
+* SENDER - originator of the message
+* SUBJECT - message subject
 
 TODO: 
 
-- test framework
-- write a little errors library in js to include in the static site, all ajaxy
-  like
+- ~~Change whitelist to WHITELIST~~
+- ~~Change email_recipients to RECIPIENTS~~
+- Allow Mandrill or Sendgrid to be used via configuration variable
+    - ~~set HOST~~
+    - ~~set USERNAME~~
+    - ~~set PASSWORD~~
+    - ~~set PORT~~
+- Create redirect for GET requests
+- Allow redirect target to be a configuration variable
+- ~~Allow DOMAIN, the HELO domain provided by the mail client to the server, to be a configuration variable~~
+- ~~Allow SENDER as the from address from the form~~
+- ~~Allow SUBJECT~~
+- Allow multiple static sites to use the same middleman-mailer-relay install
