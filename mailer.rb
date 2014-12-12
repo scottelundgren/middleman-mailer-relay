@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'pony'
+require 'dotenv/deployment'
 
 before do
     headers['Access-Control-Allow-Methods'] = 'GET, POST, PUT, DELETE, OPTIONS'
