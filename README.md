@@ -1,8 +1,8 @@
 middleman-mailer-relay
 ======================
 
-Simple sinatra application to send emails from contact
-forms on a static middleman app deployed on s3.
+Simple sinatra application to send emails from a contact 
+form on a static middleman website deployed on s3
 
 Modified so I don't have to run on heroku. Original README
 
