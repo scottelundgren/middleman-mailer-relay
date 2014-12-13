@@ -37,7 +37,7 @@ post '/' do
   puts email
   Pony.mail(
     :to => ENV['RECIPIENTS'],
-    :from => ENV['FROM'],
+    :from => ENV['SENDER'],
     :subject => ENV['SUBJECT'],
     :body => email
   )
