@@ -1,3 +1,4 @@
+require 'uri'
 require 'sinatra'
 require 'pony'
 require 'dotenv/deployment'
@@ -8,7 +9,7 @@ before do
     headers['Access-Control-Allow-Headers'] = 'accept, authorization, origin'
 end
 
-whitelist = ENV['WHITELIST'].split
+whitelist = URI.extract(ENV['WHITELIST'])
 
 set :protection, :origin_whitelist => whitelist
 
@@ -17,7 +18,7 @@ Pony.options = {
   :via_options => {
     :address => ENV['HOST'],
     :port => ENV['PORT'],
-    :domain => ENV['DOMAIN'],
+    :domain => URI.parse(whitelist.first).host,
     :user_name => ENV['USERNAME'],
     :password => ENV['PASSWORD'],
     :authentication => :plain,
@@ -26,7 +27,7 @@ Pony.options = {
 }
 
 get '/' do
-  'you have reached the test!'
+  redirect URI.parse(whitelist.first)
 end
 
 post '/' do
