@@ -16,11 +16,11 @@ set :protection, :origin_whitelist => whitelist
 Pony.options = {
   :via => :smtp,
   :via_options => {
-    :address => ENV['HOST'],
-    :port => ENV['PORT'],
+    :address => ENV['SMTP_HOST'],
+    :port => ENV['SMTP_PORT'],
     :domain => URI.parse(whitelist.first).host,
-    :user_name => ENV['USERNAME'],
-    :password => ENV['PASSWORD'],
+    :user_name => ENV['SMTP_USERNAME'],
+    :password => ENV['SMTP_PASSWORD'],
     :authentication => :plain,
     :enable_starttls_auto => true
   }

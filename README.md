@@ -12,10 +12,10 @@ CONFIGURATION
 The assumption is that you'll create a configuration per environment, so while whitelist still accepts multiple URLs the app prefers the first URL listed
 
 * WHITELIST - a space separated list of URLs
-* HOST - Sendgrid or Mandrill server
-* PORT - port to connect to, default to 587
-* USERNAME - username to connect to HOST as
-* PASSWORD - password to authenticate USERNAME to HOST
+* SMTP_HOST - Sendgrid or Mandrill server
+* SMTP_PORT - port to connect to, default to 587
+* SMTP_USERNAME - username to connect to HOST as
+* SMTP_PASSWORD - password to authenticate USERNAME to HOST
 * SENDER - originator of the message
 * SUBJECT - message subject
 
@@ -24,10 +24,10 @@ TODO:
 - ~~Change whitelist to WHITELIST~~
 - ~~Change email_recipients to RECIPIENTS~~
 - Allow Mandrill or Sendgrid to be used via configuration variable
-    - ~~set HOST~~
-    - ~~set USERNAME~~
-    - ~~set PASSWORD~~
-    - ~~set PORT~~
+    - ~~set SMTP_HOST~~
+    - ~~set SMTP_USERNAME~~
+    - ~~set SMTP_PASSWORD~~
+    - ~~set SMTP_PORT~~
 - ~~Create redirect for GET requests~~
     - ~~Set redirect based off the first URL listed in the whitelist~~
 - ~~Allow DOMAIN, the HELO domain provided by the mail client to the server, to be a configuration variable~~
