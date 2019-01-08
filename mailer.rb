@@ -33,6 +33,14 @@ end
 post '/' do
   email = ""
   params.each do |value|
+    # honeypot field to prevent spam
+    if value[0] == 'zipcode'
+      if value[1].present?
+        return #bot filled in invisible field, do not send email
+      else
+        next #field is empty, send but do not include this one
+      end
+    else
     email += "#{value[0]}: #{value[1]}\n"
   end
   puts email
